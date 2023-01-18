@@ -1,0 +1,26 @@
+<%- include('./include/header.ejs') %>
+  <div class="container">
+    <div class="row mt-5">
+      <% if(blogsExists) { blogs.forEach(element=> { %>
+        <div class="col-3">
+          <div blogId="<%= element.id %>" class="card navigate text-center" style="width: 18rem;">
+            <img src="<%= element.image %>" class="card-img-top imggg" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%= element.title %>
+              </h5>
+              <p class="card-text">
+                <%= element.description.length> 27 ? `${element.description.substring(0,27)}...` :
+                  element.description %>
+              </p>
+            </div>
+          </div>
+        </div>
+        <% })} else{ %>
+          <div class="text-center">
+            <p>No Data Found</p>
+          </div>
+          <% } %>
+    </div>
+  </div>
+  <%- include('./include/footer.ejs') %>

@@ -1,0 +1,38 @@
+<%- include('./include/header') %>
+    <div class="container">
+        <div id="liveAlertPlaceholder"></div>
+        <table class="table mt-5">
+            <thead>
+                <th>Sr. No</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <% if(blogExists) { blogs.forEach((element,index)=> { %>
+                    <tr>
+                        <td>
+                            <%= index + 1 %>
+                        </td>
+                        <td>
+                            <%= element.title %>
+                        </td>
+                        <td>
+                            <%= element.description.length> 80 ? `${element.description.substring(0,80)}...` :
+                                element.description %>
+                        </td>
+                        <td><img src="<%= element.image %>" height="50" width="50" alt="img"></td>
+                        <td><button data-id="<%= element.id %>" class="btn btn-dark btn-sm editBlog">Edit</button>
+                            <button data-id="<%= element.id %>" class="btn btn-danger btn-sm delBlog">Delete</button>
+                        </td>
+                    </tr>
+                    <% })} else{ %>
+                        <tr>
+                            <td class="text-center" colspan="5">No Blog Found</td>
+                        </tr>
+                        <% } %>
+            </tbody>
+        </table>
+    </div>
+    <%- include('./include/footer') %>
